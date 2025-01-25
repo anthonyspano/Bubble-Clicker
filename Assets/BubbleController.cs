@@ -29,6 +29,8 @@ public class BubbleController : MonoBehaviour
     private float moveSpeedSeed;
     public float moveSpeedSeedMin;
     public float moveSpeedSeedMax;
+
+    public AudioClip popSound;
     
     void Start()
     {
@@ -36,6 +38,10 @@ public class BubbleController : MonoBehaviour
         locationSeed = Random.Range(locationSeedMin, locationSeedMax);
         offsetSeed = Random.Range(offsetSeedMin, offsetSeedMax);
         moveSpeedSeed = Random.Range(moveSpeedSeedMin, moveSpeedSeedMax);
+
+        CurrencyManager.instance.AddCurrency(10);
+
+
     }
 
     void Update()
@@ -44,6 +50,31 @@ public class BubbleController : MonoBehaviour
         //transform.position = new Vector3(Mathf.Sin((Time.timeSinceLevelLoad + offsetSeed) * horizontalSpeed) * moveDistanceSeed + locationSeed, transform.position.y + moveSpeedSeed, 0);
         transform.position = new Vector3(Mathf.Sin((Time.timeSinceLevelLoad + offsetSeed) * horizontalSpeed) + locationSeed, transform.position.y + moveSpeedSeed, 0);
 
+        // check if the bubble is clicked
+        if (Input.GetMouseButtonDown(0))
+        {
+            // check if the mouse is over the bubble
+            if (Vector2.Distance(Camera.main.ScreenToWorldPoint((Vector2)Input.mousePosition), transform.position) < 32f)
+            {
+                StartCoroutine(OnMouseClick());
+            }
+        }
+    }
+
+    IEnumerator OnMouseClick()
+    {
+        // Add currency
+        CurrencyManager.instance.AddCurrency(10);
+        
+        // play popping animation
+        GetComponent<Animator>().SetTrigger("Pop");
+        
+        // play popping sound
+        GetComponent<AudioSource>().PlayOneShot(popSound);
+        yield return new WaitForSeconds(0.2f);
+
+        // destroy the bubble
+        Destroy(gameObject);
     }
 
 }

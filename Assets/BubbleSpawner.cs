@@ -6,12 +6,28 @@ public class BubbleSpawner : MonoBehaviour
 {
     public GameObject bubblePrefab;
     public float spawnOffset;
-    public float spawnRate;
+    public float spawnRate = 0;
+
+    // singleton
+    public static BubbleSpawner instance;
+
+    void Awake()
+    {
+        if(instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
-        
+        InvokeRepeating("AutoSpawn", 0, 1f);
     }
+    
 
     public void SpawnBubble()
     {
