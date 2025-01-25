@@ -70,8 +70,8 @@ public class BubbleController : MonoBehaviour
         GetComponent<Animator>().SetTrigger("Pop");
         
         // play popping sound
-        GetComponent<AudioSource>().PlayOneShot(popSound);
-        yield return new WaitForSeconds(0.2f);
+        AudioQueueManager.instance.EnqueueSound(popSound);
+        yield return new WaitForSeconds(0.1f);
 
         // destroy the bubble
         Destroy(gameObject);

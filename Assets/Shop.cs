@@ -17,7 +17,13 @@ public class Shop : MonoBehaviour
     public GameObject goldfishPrefab;
 
     public bool shopOpen = true;
-    
+
+    private AudioSource audioSource;
+    public AudioClip popSound;
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
@@ -33,11 +39,19 @@ public class Shop : MonoBehaviour
     {
         // spawn a goldfish
         Instantiate(goldfishPrefab, new Vector2(600, Random.Range(-100, 275)), Quaternion.identity);
+        PlayPopSound();
     }
 
     public void buyAutoclick()
     {
         // buy autoclick
         BubbleSpawner.instance.spawnRate++;
+        PlayPopSound();
+    }
+
+    public void PlayPopSound()
+    {
+        Debug.Log("Playing pop sound");
+        audioSource.PlayOneShot(popSound);
     }
 }
