@@ -102,12 +102,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDistance: 0.8
   horizontalSpeed: 8
-  locationSeedMin: -50
-  locationSeedMax: 50
-  offsetSeedMin: -10
-  offsetSeedMax: 10
-  moveSpeedSeedMin: 0.15
-  moveSpeedSeedMax: 1
+  locationSeedMin: -58
+  locationSeedMax: 74
+  offsetSeedMin: 1
+  offsetSeedMax: 13
+  moveSpeedSeedMin: 0.4
+  moveSpeedSeedMax: 0.75
   popSound: {fileID: 8300000, guid: 804335d72adb17c48afec34afcbab958, type: 3}
 --- !u!58 &532765499467938784
 CircleCollider2D:
@@ -176,7 +176,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 475469cfc40dff2439df94cf90ea7094, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

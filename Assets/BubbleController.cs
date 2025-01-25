@@ -41,6 +41,8 @@ public class BubbleController : MonoBehaviour
 
         CurrencyManager.instance.AddCurrency(10);
 
+        AudioQueueManager.instance.EnqueueSound(popSound);
+
 
     }
 

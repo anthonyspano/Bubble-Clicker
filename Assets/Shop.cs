@@ -25,15 +25,6 @@ public class Shop : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            // show shop
-            shopOpen = !shopOpen;
-            shopUI.SetActive(shopOpen);
-        }
-    }
 
     public void spawnGoldfish()
     {
@@ -53,5 +44,11 @@ public class Shop : MonoBehaviour
     {
         Debug.Log("Playing pop sound");
         audioSource.PlayOneShot(popSound);
+    }
+
+    public void ToggleShop()
+    {
+        shopOpen = !shopOpen;
+        shopUI.SetActive(shopOpen);
     }
 }
