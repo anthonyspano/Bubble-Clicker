@@ -29,8 +29,8 @@ public class Shop : MonoBehaviour
     public void spawnGoldfish()
     {
         // spawn a goldfish
-        Instantiate(goldfishPrefab, new Vector2(600, Random.Range(-100, 275)), Quaternion.identity);
-        PlayPopSound();
+        //Instantiate(goldfishPrefab, new Vector2(600, Random.Range(-100, 275)), Quaternion.identity);
+        //PlayPopSound();
     }
 
     public void buyAutoclick()

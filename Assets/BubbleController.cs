@@ -41,7 +41,7 @@ public class BubbleController : MonoBehaviour
 
         CurrencyManager.instance.AddCurrency(10);
 
-        AudioQueueManager.instance.EnqueueSound(popSound);
+        //AudioQueueManager.instance.EnqueueSound(popSound);
 
 
     }
@@ -60,6 +60,14 @@ public class BubbleController : MonoBehaviour
             {
                 StartCoroutine(OnMouseClick());
             }
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Fish")
+        {
+            StartCoroutine(OnMouseClick());
         }
     }
 

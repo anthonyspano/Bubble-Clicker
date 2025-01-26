@@ -25,7 +25,8 @@ public class BubbleSpawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("AutoSpawn", 0, 1f);
+        //InvokeRepeating("AutoSpawn", 0, 1f);
+        StartCoroutine(AutoSpawn());
     }
     
 
@@ -34,11 +35,26 @@ public class BubbleSpawner : MonoBehaviour
         Instantiate(bubblePrefab, transform.position + transform.up * spawnOffset, Quaternion.identity); 
     }
 
-    void AutoSpawn()
+    private IEnumerator AutoSpawn()
+    {
+        while(true)
+        {   
+            for(int i = 0; i < spawnRate; i++)
+            {
+                SpawnBubble();
+                yield return new WaitForSeconds(0.065f);
+            }
+
+            yield return new WaitForSeconds(0.9f);
+            
+        }
+    }
+
+    /* void AutoSpawn()
     {
         for(int i = 0; i < spawnRate; i++)
         {
             SpawnBubble();
         }
-    }
+    } */
 }

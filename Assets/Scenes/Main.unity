@@ -287,13 +287,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1120911724}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: spawnGoldfish
-        m_Mode: 1
+      - m_Target: {fileID: 1120911722}
+        m_TargetAssemblyTypeName: CurrencyManager, Assembly-CSharp
+        m_MethodName: AttemptPurchase
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 7004236983079639582, guid: 284f72af753dc6a4f852a32e7f065963, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1186,8 +1186,8 @@ GameObject:
   - component: {fileID: 1120911723}
   - component: {fileID: 1120911722}
   - component: {fileID: 1120911724}
-  - component: {fileID: 1120911725}
   - component: {fileID: 1120911726}
+  - component: {fileID: 1120911725}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1209,6 +1209,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currency: 0
   currencyText: {fileID: 1776265065}
+  goldfishPrefab: {fileID: 7004236983079639582, guid: 284f72af753dc6a4f852a32e7f065963, type: 3}
+  popSound: {fileID: 8300000, guid: 804335d72adb17c48afec34afcbab958, type: 3}
+  goldfishText: {fileID: 1323588156}
+  autoClickerText: {fileID: 325915450}
 --- !u!4 &1120911723
 Transform:
   m_ObjectHideFlags: 0
@@ -1352,7 +1356,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d865541c9724f144d8950af4f133d9e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource1: {fileID: 0}
+  audioSource2: {fileID: 0}
+  audioSource3: {fileID: 0}
 --- !u!1 &1151828143
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,9 +2398,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1120911724}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: buyAutoclick
+      - m_Target: {fileID: 1120911722}
+        m_TargetAssemblyTypeName: CurrencyManager, Assembly-CSharp
+        m_MethodName: AttemptPurchaseAutoClicker
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
