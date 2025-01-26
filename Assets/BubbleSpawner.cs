@@ -25,7 +25,8 @@ public class BubbleSpawner : MonoBehaviour
 
     void Start()
     {
-        //InvokeRepeating("AutoSpawn", 0, 1f);
+        SpawnBubble();
+
         StartCoroutine(AutoSpawn());
     }
     

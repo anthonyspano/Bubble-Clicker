@@ -36,7 +36,7 @@ public class FishMovement : MonoBehaviour
     {
         if(other.gameObject.tag == "Bubble")
         {
-            Destroy(gameObject);
+            Destroy(other.gameObject);
         }
     }
 }

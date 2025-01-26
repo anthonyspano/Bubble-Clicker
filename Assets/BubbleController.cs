@@ -30,6 +30,7 @@ public class BubbleController : MonoBehaviour
     public float moveSpeedSeedMin;
     public float moveSpeedSeedMax;
 
+    private AudioSource audioSource;
     public AudioClip popSound;
     
     void Start()
@@ -42,7 +43,7 @@ public class BubbleController : MonoBehaviour
         CurrencyManager.instance.AddCurrency(10);
 
         //AudioQueueManager.instance.EnqueueSound(popSound);
-
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -80,7 +81,8 @@ public class BubbleController : MonoBehaviour
         GetComponent<Animator>().SetTrigger("Pop");
         
         // play popping sound
-        AudioQueueManager.instance.EnqueueSound(popSound);
+        audioSource.PlayOneShot(popSound);
+        //AudioQueueManager.instance.EnqueueSound(popSound);
         yield return new WaitForSeconds(0.1f);
 
         // destroy the bubble

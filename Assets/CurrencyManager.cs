@@ -15,6 +15,8 @@ public class CurrencyManager : MonoBehaviour
 
     // items
     public GameObject goldfishPrefab;
+    public GameObject swordfishPrefab;
+    public GameObject anglerPrefab;
 
 
     private Dictionary<GameObject, int> itemPrices = new Dictionary<GameObject, int>();
@@ -23,8 +25,10 @@ public class CurrencyManager : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip popSound;
 
-    public Text goldfishText;
-    public Text autoClickerText;
+    public Text goldfishPrice;
+    public Text swordfishPrice;
+    public Text anglerPrice;
+    public Text autoClickerPrice;
 
     void Awake()
     {
@@ -43,10 +47,14 @@ public class CurrencyManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         itemPrices.Add(goldfishPrefab, 100);
+        itemPrices.Add(swordfishPrefab, 100);
+        itemPrices.Add(anglerPrefab, 100);
         specialItems.Add("AutoClicker", 100);
 
-        goldfishText.text = itemPrices[goldfishPrefab].ToString();
-        autoClickerText.text = specialItems["AutoClicker"].ToString();
+        goldfishPrice.text = itemPrices[goldfishPrefab].ToString();
+        swordfishPrice.text = itemPrices[swordfishPrefab].ToString();
+        anglerPrice.text = itemPrices[anglerPrefab].ToString();
+        autoClickerPrice.text = specialItems["AutoClicker"].ToString();
 
     }
 
@@ -101,7 +109,7 @@ public class CurrencyManager : MonoBehaviour
         currencyText.text = currency.ToString();
     }   
 
-    private void RemoveCurrency(int amount)
+    public void RemoveCurrency(int amount)
     {
         currency -= amount;
     }
