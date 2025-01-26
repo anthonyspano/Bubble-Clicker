@@ -17,7 +17,7 @@ public class CurrencyManager : MonoBehaviour
     public GameObject goldfishPrefab;
     public GameObject swordfishPrefab;
     public GameObject anglerPrefab;
-
+    public GameObject rickPrefab;
 
     private Dictionary<GameObject, int> itemPrices = new Dictionary<GameObject, int>();
     private Dictionary<string, int> specialItems = new Dictionary<string, int>();
@@ -29,6 +29,7 @@ public class CurrencyManager : MonoBehaviour
     public Text swordfishPrice;
     public Text anglerPrice;
     public Text autoClickerPrice;
+    public Text rickPrice;
 
     void Awake()
     {
@@ -49,12 +50,14 @@ public class CurrencyManager : MonoBehaviour
         itemPrices.Add(goldfishPrefab, 100);
         itemPrices.Add(swordfishPrefab, 100);
         itemPrices.Add(anglerPrefab, 100);
+        itemPrices.Add(rickPrefab, 10);
         specialItems.Add("AutoClicker", 100);
 
         goldfishPrice.text = itemPrices[goldfishPrefab].ToString();
         swordfishPrice.text = itemPrices[swordfishPrefab].ToString();
         anglerPrice.text = itemPrices[anglerPrefab].ToString();
         autoClickerPrice.text = specialItems["AutoClicker"].ToString();
+        rickPrice.text = itemPrices[rickPrefab].ToString();
 
     }
 
@@ -69,15 +72,23 @@ public class CurrencyManager : MonoBehaviour
         {
             RemoveCurrency(itemPrices[item]);
             // Spawn gameobject
-            var screenSide = Random.Range(0, 1);
-            if(screenSide == 0)
+            if(item == rickPrefab)
             {
-                // spawn on right side
-                Instantiate(item, new Vector2(600, Random.Range(-100, 275)), Quaternion.identity);
+                Debug.Log("Spawning Rick");
+                Instantiate(item, new Vector2(-530, 54.81263f), Quaternion.identity);
             }
             else
             {
-                Instantiate(item, new Vector2(-600, Random.Range(-100, 275)), Quaternion.identity);
+                var screenSide = Random.Range(0, 1);
+                if(screenSide == 0)
+                {
+                    // spawn on right side
+                    Instantiate(item, new Vector2(600, Random.Range(-100, 275)), Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(item, new Vector2(-600, Random.Range(-100, 275)), Quaternion.identity);
+                }
             }
             audioSource.PlayOneShot(popSound);
         }
