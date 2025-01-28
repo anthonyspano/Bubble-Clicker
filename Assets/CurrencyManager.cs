@@ -24,13 +24,17 @@ public class CurrencyManager : MonoBehaviour
 
     private AudioSource audioSource;
     public AudioClip popSound;
+    public AudioClip NGGYU;
 
     public Text goldfishPrice;
     public Text swordfishPrice;
     public Text anglerPrice;
     public Text autoClickerPrice;
     public Text rickPrice;
+    public Text prestigePrice;
 
+    public PartyLights partyLights;
+    public GameObject gameOverObjectBuy;
     void Awake()
     {
         if (instance == null)
@@ -47,17 +51,19 @@ public class CurrencyManager : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
 
-        itemPrices.Add(goldfishPrefab, 100);
-        itemPrices.Add(swordfishPrefab, 100);
-        itemPrices.Add(anglerPrefab, 100);
-        itemPrices.Add(rickPrefab, 10);
+        itemPrices.Add(goldfishPrefab, 50);
+        itemPrices.Add(swordfishPrefab, 200);
+        itemPrices.Add(anglerPrefab, 1000);
+        itemPrices.Add(rickPrefab, 500);
         specialItems.Add("AutoClicker", 100);
+        specialItems.Add("Prestige", 3000);
 
         goldfishPrice.text = itemPrices[goldfishPrefab].ToString();
         swordfishPrice.text = itemPrices[swordfishPrefab].ToString();
         anglerPrice.text = itemPrices[anglerPrefab].ToString();
         autoClickerPrice.text = specialItems["AutoClicker"].ToString();
         rickPrice.text = itemPrices[rickPrefab].ToString();
+        prestigePrice.text = specialItems["Prestige"].ToString();
 
     }
 
@@ -76,6 +82,12 @@ public class CurrencyManager : MonoBehaviour
             {
                 Debug.Log("Spawning Rick");
                 Instantiate(item, new Vector2(-530, 54.81263f), Quaternion.identity);
+                audioSource.Stop();
+                audioSource.volume = 1f;
+                audioSource.PlayOneShot(NGGYU);
+                //partyLights.m_ColorGrading.lift.overrideState = true;
+                partyLights.m_ColorGrading.enabled.Override(true);
+                gameOverObjectBuy.SetActive(true);
             }
             else
             {
@@ -101,6 +113,18 @@ public class CurrencyManager : MonoBehaviour
             RemoveCurrency(specialItems["AutoClicker"]);
             // Upgrade AutoClicker
             BubbleSpawner.instance.spawnRate++;
+        }
+    }
+
+    public void AttemptPurchasePrestige()
+    {
+        if(CanAfford("Prestige"))
+        {
+            RemoveCurrency(specialItems["Prestige"]);
+            // Prestige
+            // add vignette and game over marquee
+            StartCoroutine(partyLights.Vignette());
+
         }
     }
 

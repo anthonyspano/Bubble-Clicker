@@ -32,19 +32,7 @@ public class AudioQueueManager : MonoBehaviour
 
     void Update()
     {
-        // If the AudioSource is not playing and there are clips in the queue
-/*         if (!audioSource1.isPlaying && audioQueue.Count > 0)
-        {
-            StartCoroutine(PlayNextClip(audioSource1));
-        }
-        else if (!audioSource2.isPlaying && audioQueue.Count > 0)
-        {
-            StartCoroutine(PlayNextClip(audioSource2));
-        }
-        else if (!audioSource3.isPlaying && audioQueue.Count > 0)
-        {
-            StartCoroutine(PlayNextClip(audioSource3));
-        } */
+
     }
 
     /// Adds an audio clip to the queue.
